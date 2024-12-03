@@ -6,13 +6,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import {useNavigate} from 'react-router-dom'
 
 const SigninPage = () => {
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+
+
     try {
-      const response = await fetch('http://localhost:8000/admin/login', {
+         
+         const response = await fetch(`http://localhost:8000/admin/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -20,6 +24,7 @@ const SigninPage = () => {
         body: JSON.stringify({email, password }),
         credentials: 'include'
       });
+    
 
       if (response.ok) {
         const data = await response.json();
@@ -44,6 +49,7 @@ const SigninPage = () => {
       toast.error('An error occurred during registration');
       console.error('An error occurred during registration', error);
     }
+
   }
 
   
